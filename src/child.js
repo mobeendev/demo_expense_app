@@ -2,11 +2,16 @@ import React, { useContext, useState } from "react";
 import { TransactionContext } from "./transContext";
 
 function Child() {
-  let { transactions, addTransaction, removeTransaction } = useContext(
-    TransactionContext
-  );
+  let {
+    transactions,
+    addTransaction,
+    updateTransaction,
+    removeTransaction,
+  } = useContext(TransactionContext);
   let [newDesc, setDesc] = useState("");
   let [newAmount, setAmount] = useState(0);
+  let [isUpdate, setIsUpdate] = useState(false);
+  let [updateId, setUpdateId] = useState(null);
 
   const handleAddition = (event) => {
     event.preventDefault();
@@ -14,14 +19,31 @@ function Child() {
       alert("Please enter correct value");
       return false;
     }
-    addTransaction({
-      id: transactions.length,
-      amount: Number(newAmount),
-      desc: newDesc,
-    });
+
+    if (isUpdate) {
+      updateTransaction(updateId, {
+        amount: Number(newAmount),
+        desc: newDesc,
+      });
+      setUpdateId(null);
+      setIsUpdate(false);
+    } else {
+      addTransaction({
+        id: transactions.length,
+        amount: Number(newAmount),
+        desc: newDesc,
+      });
+    }
 
     setDesc("");
     setAmount(0);
+  };
+
+  const updateTrans = (item) => {
+    setDesc(item.desc);
+    setAmount(item.amount);
+    setIsUpdate(true);
+    setUpdateId(item.id);
   };
 
   const getIncome = () => {
@@ -63,14 +85,29 @@ function Child() {
       <ul className="trnsaction-list">
         {transactions.map((transObj, ind) => {
           return (
-            <li
-              key={transObj.id}
-              onClick={() => {
-                removeTransaction(transObj.id);
-              }}
-            >
+            <li key={transObj.id}>
               <span>{transObj.desc}</span>
-              <span>${transObj.amount}</span>
+              <span className="actions">
+                ${transObj.amount}
+                <a
+                  href="#"
+                  onClick={(evt) => {
+                    evt.preventDefault();
+                    updateTrans(transObj);
+                  }}
+                >
+                  Edit
+                </a>
+                /
+                <a
+                  href="#"
+                  onClick={() => {
+                    removeTransaction(transObj.id);
+                  }}
+                >
+                  Remove
+                </a>
+              </span>
             </li>
           );
         })}
@@ -103,7 +140,7 @@ function Child() {
           />
         </label>
         <br />
-        <input type="submit" value="Add Transaction" />
+        <input type="submit" value={!isUpdate ? "Add Transaction" : "Update"} />
       </form>
     </div>
   );

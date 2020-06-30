@@ -1,4 +1,4 @@
-.container{
+.container {
   max-width: 400px;
   min-height: 450px;
   margin: 0 auto;
@@ -38,4 +38,17 @@
   width: 100%;
   margin: 10px 0;
   padding: 5px 5px;
+}
+
+span a {
+  margin: 4px;
+  font-size: 13px;
+  text-align: center;
+  text-decoration: initial;
+  font-weight: bold;
+}
+.actions {
+  border: solid 1px;
+  border-radius: 5px;
+  padding: 3px;
 }

@@ -23,6 +23,16 @@ export const TransactionProvider = ({ children }) => {
       },
     });
   }
+  function updateTransaction(itemId, item) {
+    dispatch({
+      type: "UPDATE_TRANSACTION",
+      payload: {
+        id: itemId,
+        amount: item.amount,
+        desc: item.desc,
+      },
+    });
+  }
   function removeTransaction(itemId) {
     dispatch({
       type: "REMOVE_TRANSACTION",
@@ -38,6 +48,7 @@ export const TransactionProvider = ({ children }) => {
         transactions: state,
         addTransaction,
         removeTransaction,
+        updateTransaction,
       }}
     >
       {children}
