@@ -41,6 +41,6 @@ jobs:
       
     
     - name: Deploying using surge
-      run: surge ./build http://mobeendev-expense.surge.sh/ --token ${{secrets.expense-app-secret}}
+      run: surge ./build http://mobeendev-expense.surge.sh/ --token ${{secrets.EXPENSE_APP_SECRET}}
         
         
