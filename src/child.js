@@ -67,15 +67,17 @@ function Child() {
       <h1 className="text-center">Expense Tracker</h1>
 
       <h3>
-        Your Balance <br /> ${getIncome() + getExpense()}
+        <span className="blue">Your Balance</span> <br /> $
+        {getIncome() + getExpense()}
       </h3>
 
       <div className="expense-container">
         <h3>
-          INCOME <br /> ${getIncome()}
+          <span className="green">INCOME</span> <br /> ${getIncome()}
         </h3>
         <h3>
-          EXPENSE <br /> ${getExpense()}
+          <span className="red">EXPENSE </span>
+          <br /> ${getExpense()}
         </h3>
       </div>
 
@@ -89,24 +91,24 @@ function Child() {
               <span>{transObj.desc}</span>
               <span className="actions">
                 ${transObj.amount}
-                <a
-                  href="#"
+                <span
+                  className="blue"
                   onClick={(evt) => {
                     evt.preventDefault();
                     updateTrans(transObj);
                   }}
                 >
                   Edit
-                </a>
+                </span>
                 /
-                <a
-                  href="#"
+                <span
+                  className="red"
                   onClick={() => {
                     removeTransaction(transObj.id);
                   }}
                 >
                   Remove
-                </a>
+                </span>
               </span>
             </li>
           );
