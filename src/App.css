@@ -63,3 +63,19 @@ span.green {
 span.red {
   color: red;
 }
+
+span.btnactions {
+  margin-left: 3px;
+  font-size: 12px;
+  font-weight: bold;
+  align-items: center;
+  align-content: center;
+  margin-right: 3px;
+}
+
+span.btnactions:hover {
+  color: grey;
+  cursor: pointer;
+  cursor: hand;
+  font-size: 14px;
+}

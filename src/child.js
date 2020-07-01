@@ -92,7 +92,7 @@ function Child() {
               <span className="actions">
                 ${transObj.amount}
                 <span
-                  className="blue"
+                  className="blue btnactions"
                   onClick={(evt) => {
                     evt.preventDefault();
                     updateTrans(transObj);
@@ -102,12 +102,12 @@ function Child() {
                 </span>
                 /
                 <span
-                  className="red"
+                  className="red btnactions"
                   onClick={() => {
                     removeTransaction(transObj.id);
                   }}
                 >
-                  Remove
+                  Remove (x)
                 </span>
               </span>
             </li>
