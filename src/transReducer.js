@@ -5,7 +5,7 @@ const TransactionReducer = (state, action) => {
     }
     case "UPDATE_TRANSACTION": {
       const elementsIndex = state.findIndex(
-        (item) => item.id == action.payload.id
+        (item) => item.id === action.payload.id
       );
       let newState = [...state];
 
